@@ -4,6 +4,7 @@ import Article from "./article";
 import Authentication from "./authentication";
 import TagFeed from "./tagFeed";
 import YourFeed from "./yourFeed";
+import CreateArticle from "./createArticle";
 
 export default () => {
     return (

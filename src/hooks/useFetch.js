@@ -3,7 +3,7 @@ import axios from "axios";
 import useLocalStorage from "./useLocalStorage";
 
 export default url => {
-    const baseUrl = 'http://conduit.productionready.io/api'
+    const baseUrl = 'https://conduit.productionready.io/api'
     const [isLoading, setIsLoading] = useState(false)
     const [response, setResponse] = useState(null)
     const [error, setError] = useState(null)
@@ -16,6 +16,10 @@ export default url => {
     }, [])
 
     useEffect(() => {
+        if (!isLoading) {
+            return
+        }
+
         const requestOptions = {
             ...options,
             ...{
@@ -25,22 +29,16 @@ export default url => {
             }
         }
 
-        if (!isLoading) {
-            return
-        }
-
         axios(baseUrl + url, requestOptions)
             .then(res => {
-                console.log('success', res)
-                setIsLoading(false)
                 setResponse(res.data)
+                setIsLoading(false)
             })
             .catch(error => {
-                console.log('error', error)
-                setIsLoading(false)
                 setError(error.response.data)
+                setIsLoading(false)
             })
-    }, [isLoading, options, url, token])
+    }, [isLoading, url, options, token])
 
     return [{isLoading, response, error}, doFetch]
 }

@@ -8,6 +8,7 @@ import PopularTags from "../../components/popularTags";
 import Loading from "../../components/loading";
 import ErrorMessage from "../../components/errorMessage";
 import FeedToggler from "../../components/feedToggler";
+import Banner from "../../components/banner";
 
 
 const YourFeed = ({location, match}) => {
@@ -26,16 +27,13 @@ const YourFeed = ({location, match}) => {
 
     return (
         <div className="home-page">
-            <div className="banner">
-                <h1>Medium Clone</h1>
-                <p>A place to share knowledge</p>
-            </div>
+            <Banner />
             <div className="container page">
                 <div className="row">
                     <div className="col-md-9">
                         <FeedToggler />
-                        {isLoading && <Loading/>}
-                        {error && <ErrorMessage/>}
+                        {isLoading && <Loading />}
+                        {error && <ErrorMessage />}
                         {!isLoading && response && (
                             <Fragment>
                                 <Feed articles={response.articles} />
@@ -57,4 +55,4 @@ const YourFeed = ({location, match}) => {
     )
 }
 
-export default YourFeed;
+export default YourFeed

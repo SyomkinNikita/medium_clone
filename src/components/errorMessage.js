@@ -1,8 +1,7 @@
 import React from "react";
 
 const ErrorMessage = () => {
-
-    return <div>Something went wrong</div>
+    return <div>Something bad happened...</div>
 }
 
-export default ErrorMessage;
+export default ErrorMessage

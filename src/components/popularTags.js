@@ -16,19 +16,15 @@ const PopularTags = () => {
     }
 
     if (error) {
-        return <ErrorMessage/>
+        return <ErrorMessage />
     }
 
-    /*{isLoading && <Loading/>}
-    {error && <ErrorMessage/>}*/
-
-
     return (
-        <div className='sidebar'>
+        <div className="sidebar">
             <p>Popular tags</p>
-            <div className='tag-list'>
+            <div className="tag-list">
                 {response.tags.map(tag => (
-                    <Link to={`/tags/${tag}`} className='tag-default tag-pill' key={tag}>
+                    <Link to={`/tags/${tag}`} className="tag-default tag-pill" key={tag}>
                         {tag}
                     </Link>
                 ))}
@@ -37,4 +33,4 @@ const PopularTags = () => {
     )
 }
 
-export default PopularTags;
+export default PopularTags

@@ -12,6 +12,7 @@ import FeedToggler from "../../components/feedToggler";
 
 const TagFeed = ({location, match}) => {
     const tagName = match.params.slug
+    console.log('tagName', tagName)
     const {offset, currentPage} = getPaginator(location.search)
     const stringifiedParams = stringify({
         limit,
@@ -24,20 +25,17 @@ const TagFeed = ({location, match}) => {
 
     useEffect(() => {
         doFetch()
-    }, [currentPage, doFetch, tagName])
+    }, [currentPage, doFetch])
 
     return (
         <div className="home-page">
-            <div className="banner">
-                <h1>Medium Clone</h1>
-                <p>A place to share knowledge</p>
-            </div>
+            <Banner />
             <div className="container page">
                 <div className="row">
                     <div className="col-md-9">
-                        <FeedToggler tagName={tagName}/>
-                        {isLoading && <Loading/>}
-                        {error && <ErrorMessage/>}
+                        <FeedToggler tagName={tagName} />
+                        {isLoading && <Loading />}
+                        {error && <ErrorMessage />}
                         {!isLoading && response && (
                             <Fragment>
                                 <Feed articles={response.articles} />
@@ -59,4 +57,4 @@ const TagFeed = ({location, match}) => {
     )
 }
 
-export default TagFeed;
+export default TagFeed

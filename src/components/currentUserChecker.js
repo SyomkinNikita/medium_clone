@@ -4,8 +4,8 @@ import {CurrentUserContext} from "../contexts/currentUser";
 import useLocalStorage from "../hooks/useLocalStorage";
 
 const CurrentUserChecker = ({children}) => {
-    const [{response}, doFetch] = useFetch("/user")
     const [, dispatch] = useContext(CurrentUserContext)
+    const [{response}, doFetch] = useFetch('/user')
     const [token] = useLocalStorage('token')
 
     useEffect(() => {
@@ -13,9 +13,10 @@ const CurrentUserChecker = ({children}) => {
             dispatch({type: 'SET_UNAUTHORIZED'})
             return
         }
+
         doFetch()
         dispatch({type: 'LOADING'})
-    }, [token, dispatch, doFetch])
+    }, [doFetch, dispatch, token])
 
     useEffect(() => {
         if (!response) {
@@ -24,10 +25,7 @@ const CurrentUserChecker = ({children}) => {
 
         dispatch({type: 'SET_AUTHORIZED', payload: response.user})
     }, [response, dispatch])
-
-
-
     return children
 }
 
-export default CurrentUserChecker;
+export default CurrentUserChecker

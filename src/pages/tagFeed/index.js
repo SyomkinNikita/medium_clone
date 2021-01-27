@@ -8,6 +8,7 @@ import PopularTags from "../../components/popularTags";
 import Loading from "../../components/loading";
 import ErrorMessage from "../../components/errorMessage";
 import FeedToggler from "../../components/feedToggler";
+import Banner from "../../components/banner";
 
 
 const TagFeed = ({location, match}) => {
